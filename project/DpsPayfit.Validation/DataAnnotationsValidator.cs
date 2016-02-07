@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace DpsPayfit
+namespace DpsPayfit.Validation
 {
     public static class DataAnnotationsValidator
     {
@@ -14,8 +14,8 @@ namespace DpsPayfit
 
             var allResults = toValidate.GetAllPublicPropertyNamesToValidate()
                 .Select(property => ValidateProperty(toValidate, property.Name));
-            if(!allResults.All(r => r.IsValid))
-                return  new DataValidationResult {IsValid = true};
+            if (!allResults.All(r => r.IsValid))
+                return new DataValidationResult { IsValid = true };
             return new DataValidationResult
             {
                 ValidationResults = allResults.Where(r => !r.IsValid).SelectMany(r => r.ValidationResults)
@@ -43,18 +43,6 @@ namespace DpsPayfit
         {
             var type = toValidate.GetType();
             return type.GetProperties(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance).AsEnumerable();
-        }
-    }
-
-
-    public class DataValidationResult
-    {
-        public bool IsValid { get; set; }
-        public IEnumerable<ValidationResult> ValidationResults { get; set; }
-
-        public DataValidationResult()
-        {
-            ValidationResults = Enumerable.Empty<ValidationResult>();
         }
     }
 }
