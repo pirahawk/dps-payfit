@@ -12,37 +12,42 @@ namespace DpsPayfit.Validation
         {
             if (toValidate == null) throw new ArgumentNullException(nameof(toValidate));
 
-            var allResults = toValidate.GetAllPublicPropertyNamesToValidate()
-                .Select(property => ValidateProperty(toValidate, property.Name));
-            if (!allResults.All(r => r.IsValid))
-                return new DataValidationResult { IsValid = true };
-            return new DataValidationResult
-            {
-                ValidationResults = allResults.Where(r => !r.IsValid).SelectMany(r => r.ValidationResults)
-            };
+            var allProperties = toValidate.GetAllPublicPropertyNamesToValidate();
+            var memberValues = toValidate.GetPropertyValues();
+
+            //return some sort of dictionary with member name and error or something
+            return new DataValidationResult(allProperties
+                .ToDictionary(p => p.Name, p=> ValidateProperty(toValidate, p.Name, memberValues[p.Name])));
         }
 
-        public static DataValidationResult ValidateProperty<TValidate>(TValidate toValidate, string memberName)
+        public static PropertyValidationResult ValidateProperty<TValidate>(TValidate toValidate, string memberName, object value)
         {
             if (memberName == null) throw new ArgumentNullException(nameof(memberName));
-
             var context = new ValidationContext(toValidate)
             {
                 MemberName = memberName
             };
-            var results = new List<ValidationResult>();
-            var result = Validator.TryValidateObject(toValidate, context, results);
-            return new DataValidationResult
+            var propertyResults = new List<ValidationResult>();
+            return new PropertyValidationResult
             {
-                IsValid = result,
-                ValidationResults = results.AsEnumerable()
+                IsValid = Validator.TryValidateProperty(value, context, propertyResults),
+                ValidationResults = propertyResults
             };
         }
 
-        static IEnumerable<PropertyInfo> GetAllPublicPropertyNamesToValidate<TValidate>(this TValidate toValidate)
+
+        internal static IEnumerable<PropertyInfo> GetAllPublicPropertyNamesToValidate<TValidate>(this TValidate toValidate)
         {
             var type = toValidate.GetType();
             return type.GetProperties(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance).AsEnumerable();
+        }
+
+        internal static IDictionary<string, object> GetPropertyValues<TValidate>(this TValidate toValidate)
+        {
+            var valueLookup = toValidate
+                .GetAllPublicPropertyNamesToValidate()
+                .ToDictionary(p => p.Name, p => p.GetValue(toValidate));
+            return valueLookup;
         }
     }
 }
