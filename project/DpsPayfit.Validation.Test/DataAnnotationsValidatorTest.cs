@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DpsPayfit.Validation.Test
@@ -18,8 +15,8 @@ namespace DpsPayfit.Validation.Test
             var publicProperties = instance.GetAllPublicPropertyNamesToValidate();
             var allNames = publicProperties.Select(p => p.Name).ToArray();
 
-            Assert.Contains("FirstName", allNames);
-            Assert.Contains("LastName", allNames);
+            Assert.Contains(nameof(instance.FirstName), allNames);
+            Assert.Contains(nameof(instance.LastName), allNames);
             Assert.DoesNotContain("SecretCode", allNames);
         }
 
@@ -32,8 +29,8 @@ namespace DpsPayfit.Validation.Test
 
             var propertyValues = instance.GetPropertyValues();
 
-            Assert.Equal(firstName, propertyValues["FirstName"]);
-            Assert.Equal(lastName, propertyValues["LastName"]);
+            Assert.Equal(firstName, propertyValues[nameof(instance.FirstName)]);
+            Assert.Equal(lastName, propertyValues[nameof(instance.LastName)]);
         }
 
         [Fact]
@@ -45,7 +42,7 @@ namespace DpsPayfit.Validation.Test
             };
             var context = new ValidationContext(instance)
             {
-                MemberName = "FirstName"
+                MemberName = nameof(instance.FirstName)
             };
             var objectResults = new List<ValidationResult>();
             var isObjectValid = Validator.TryValidateObject(instance, context, objectResults);
@@ -79,8 +76,9 @@ namespace DpsPayfit.Validation.Test
                 var fNameFunc = (Func<MyTestType, object>)(val => val.FirstName);
                 var lNameFunc = (Func<MyTestType, object>)(val => val.LastName);
 
-                const string firstName = "FirstName";
-                const string lastName = "LastName";
+                var myTestType = new MyTestType();
+                const string firstName = nameof(myTestType.FirstName);
+                const string lastName = nameof(myTestType.LastName);
 
                 yield return new object[]
                 {
