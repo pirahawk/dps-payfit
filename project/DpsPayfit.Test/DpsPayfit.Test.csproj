@@ -61,9 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DpsGenerateRequestMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DpsPayfit.Validation\DpsPayfit.Validation.csproj">
+      <Project>{89edcb13-c86e-4acf-9e03-9c139992e1bf}</Project>
+      <Name>DpsPayfit.Validation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DpsPayfit\DpsPayfit.csproj">
       <Project>{fd3547ce-a89f-4c34-81b8-38ff373ac971}</Project>
       <Name>DpsPayfit</Name>

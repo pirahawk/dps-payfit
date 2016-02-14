@@ -8,18 +8,6 @@ namespace DpsPayfit.Validation
 {
     public static class DataAnnotationsValidator
     {
-        public static DataValidationResult Validate<TValidate>(TValidate toValidate)
-        {
-            if (toValidate == null) throw new ArgumentNullException(nameof(toValidate));
-
-            var allProperties = toValidate.GetAllPublicPropertyNamesToValidate();
-            var memberValues = toValidate.GetPropertyValues();
-
-            //return some sort of dictionary with member name and error or something
-            return new DataValidationResult(allProperties
-                .ToDictionary(p => p.Name, p=> ValidateProperty(toValidate, p.Name, memberValues[p.Name])));
-        }
-
         public static PropertyValidationResult ValidateProperty<TValidate>(TValidate toValidate, string memberName, object value)
         {
             if (memberName == null) throw new ArgumentNullException(nameof(memberName));
@@ -36,13 +24,13 @@ namespace DpsPayfit.Validation
         }
 
 
-        internal static IEnumerable<PropertyInfo> GetAllPublicPropertyNamesToValidate<TValidate>(this TValidate toValidate)
+        public static IEnumerable<PropertyInfo> GetAllPublicPropertyNamesToValidate<TValidate>(this TValidate toValidate)
         {
             var type = toValidate.GetType();
             return type.GetProperties(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance).AsEnumerable();
         }
 
-        internal static IDictionary<string, object> GetPropertyValues<TValidate>(this TValidate toValidate)
+        public static IDictionary<string, object> GetPropertyValues<TValidate>(this TValidate toValidate)
         {
             var valueLookup = toValidate
                 .GetAllPublicPropertyNamesToValidate()
