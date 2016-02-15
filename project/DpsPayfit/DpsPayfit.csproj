@@ -49,6 +49,7 @@
     <Compile Include="DpsMessageExtensions.cs" />
     <Compile Include="IDpsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TxnType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DpsPayfit.Validation\DpsPayfit.Validation.csproj">
