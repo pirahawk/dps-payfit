@@ -37,15 +37,8 @@ namespace DpsPayfit
             }
         }
 
-        public string ClientType { get; }
-
-
         public string PxPayUserId { get;}
         public string PxPayKey { get; }
-
-        public string UrlSuccess { get; }
-        public string UrlFail { get;}
-
         public string AmountInput
         {
             get
@@ -56,26 +49,24 @@ namespace DpsPayfit
 
         [Range(0, 999999.99)]
         public decimal Amount { get; set; }
-
         public Currency CurrencyInput { get; set; }
-
-        public string BillingId { get; set; }
+        public string TxnType { get; }
+        public string UrlFail { get; }
+        public string UrlSuccess { get; }
+        
 
         [EmailAddress]
         public string EmailAddress { get; set; }
-
         [Range(0, 1)]
         public int? EnableAddBillCard { get; set; }
-
         public string MerchantReference { get; set; }
+        public string DpsBillingId { get; set; }
         public string TxnData1 { get; set; }
         public string TxnData2 { get; set; }
         public string TxnData3 { get; set; }
-        public string TxnType { get;}
         public string TxnId { get; set; }
-
         public string Opt { get; set; }
-
+        public string ClientType { get; }
         public string Timeout { get;}
     }
 }
