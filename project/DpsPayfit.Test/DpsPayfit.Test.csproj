@@ -36,6 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,10 +62,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DpsGenerateRequestMessageTest.cs" />
+    <Compile Include="MessageSerializationFactoryTest.cs" />
+    <Compile Include="GenerateRequestMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DpsPayfit.Validation.Test\DpsPayfit.Validation.Test.csproj">
+      <Project>{bb5a96a8-02aa-4e0c-ab38-0f7b46208d70}</Project>
+      <Name>DpsPayfit.Validation.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DpsPayfit.Validation\DpsPayfit.Validation.csproj">
       <Project>{89edcb13-c86e-4acf-9e03-9c139992e1bf}</Project>
       <Name>DpsPayfit.Validation</Name>

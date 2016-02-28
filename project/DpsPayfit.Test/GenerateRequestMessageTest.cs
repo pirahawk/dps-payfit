@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DpsPayfit.Validation.Test;
 using Xunit;
 
 namespace DpsPayfit.Test
 {
-    public class DpsGenerateRequestMessageTest
+    public class GenerateRequestMessageTest
     {
         [Theory, MemberData("AmountInputData")]
-        public void AmountInputFormatAccountsForCurrencyType(DpsGenerateRequestMessage message, string expectedAmountInput)
+        public void AmountInputFormatAccountsForCurrencyType(GenerateRequestMessage message, string expectedAmountInput)
         {
             Assert.Equal(expectedAmountInput, message.AmountInput);
         }
@@ -36,18 +37,19 @@ namespace DpsPayfit.Test
 
 
         [Theory, MemberData("PropertyRulesData")]
-        public void PropertyAnnotationsHoldAsExpected(DpsGenerateRequestMessage message, string propertyName, bool expectValid)
+        public void PropertyAnnotationsHoldAsExpected(GenerateRequestMessage message, string propertyName, bool expectValid)
         {
-            var dataValidationResult = message.Validate();
+            var validator = new DataAnnotationsValidatorFixture().Build();
+            var results = validator.Validate(message);
             if (expectValid)
             {
-                Assert.True(dataValidationResult.IsValid);
+                Assert.True(results.Any(r => r.MemberName != propertyName));
             }
             else
             {
-                var propResult = dataValidationResult[propertyName];
-                Assert.False(dataValidationResult.IsValid);
+                var propResult = results.Single(r => r.MemberName == propertyName);
                 Assert.False(propResult.IsValid);
+                Assert.True(propResult.ValidationResults.Any());
             }
         }
 
@@ -142,9 +144,9 @@ namespace DpsPayfit.Test
             ClientType = ClientType.Internet;
             Timeout = DateTimeOffset.UtcNow;
         }
-        public DpsGenerateRequestMessage Build()
+        public GenerateRequestMessage Build()
         {
-            return new DpsGenerateRequestMessage(
+            return new GenerateRequestMessage(
                 PxPayUserId,
                 PxPayKey,
                 UrlSuccess,

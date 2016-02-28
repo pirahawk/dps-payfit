@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAnnotationsValidator.cs" />
+    <Compile Include="IDataAnnotationsValidator.cs" />
     <Compile Include="PropertyValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

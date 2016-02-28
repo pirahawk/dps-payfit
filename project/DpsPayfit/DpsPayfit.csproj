@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientType.cs" />
     <Compile Include="Currency.cs" />
-    <Compile Include="DpsGenerateRequestMessage.cs" />
-    <Compile Include="DpsMessageExtensions.cs" />
+    <Compile Include="GenerateRequestMessage.cs" />
+    <Compile Include="GenerateRequestMessageService.cs" />
+    <Compile Include="MessageSerializationFactory.cs" />
     <Compile Include="IDpsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TxnType.cs" />

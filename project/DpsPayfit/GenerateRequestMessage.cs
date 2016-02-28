@@ -6,9 +6,9 @@ namespace DpsPayfit
     /// <summary>
     /// Represents a Dps Generate-Request Message
     /// </summary>
-    public class DpsGenerateRequestMessage : IDpsMessage
+    public class GenerateRequestMessage : IDpsMessage
     {
-        public DpsGenerateRequestMessage(string pxPayUserId,
+        public GenerateRequestMessage(string pxPayUserId,
             string pxPayKey,
             string urlSuccess,
             string urlFail,

@@ -12,7 +12,7 @@ namespace DpsPayfit.Validation.Test
         public static void CanGetAllPropertyNames()
         {
             var instance = new MyTestType();
-            var publicProperties = instance.GetAllPublicPropertyNamesToValidate();
+            var publicProperties = DataAnnotationsValidator.GetAllPublicPropertyNamesToValidate(instance);
             var allNames = publicProperties.Select(p => p.Name).ToArray();
 
             Assert.Contains(nameof(instance.FirstName), allNames);
@@ -26,8 +26,7 @@ namespace DpsPayfit.Validation.Test
             const string lastName = "bar";
             const string firstName = "Foo";
             var instance = new MyTestType { FirstName = firstName, LastName = lastName };
-
-            var propertyValues = instance.GetPropertyValues();
+            var propertyValues = DataAnnotationsValidator.GetPropertyValues(instance);
 
             Assert.Equal(firstName, propertyValues[nameof(instance.FirstName)]);
             Assert.Equal(lastName, propertyValues[nameof(instance.LastName)]);
@@ -57,7 +56,8 @@ namespace DpsPayfit.Validation.Test
             Func<MyTestType, object> valueProvider,
             bool shouldBeValid)
         {
-            var result = DataAnnotationsValidator.ValidateProperty(toValidate, propertyToValidate, valueProvider(toValidate));
+            var validator = new DataAnnotationsValidatorFixture().Build();
+            var result = validator.ValidateProperty(toValidate, propertyToValidate, valueProvider(toValidate));
             if (shouldBeValid)
             {
                 Assert.True(result.IsValid);
@@ -111,5 +111,13 @@ namespace DpsPayfit.Validation.Test
         public string LastName { get; set; }
 
         private int SecretCode { get; set; }
+    }
+
+    public class DataAnnotationsValidatorFixture
+    {
+        public DataAnnotationsValidator Build()
+        {
+            return new DataAnnotationsValidator();
+        }
     }
 }
