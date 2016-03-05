@@ -1,13 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace DpsPayfit
 {
     /// <summary>
     /// Represents a Dps Generate-Request Message
     /// </summary>
+
+    [XmlRoot(ElementName = "GenerateRequest", Namespace = "")]
     public class GenerateRequestMessage : IDpsMessage
     {
+        public GenerateRequestMessage(){   }
         public GenerateRequestMessage(string pxPayUserId,
             string pxPayKey,
             string urlSuccess,
@@ -37,8 +41,13 @@ namespace DpsPayfit
             }
         }
 
-        public string PxPayUserId { get;}
-        public string PxPayKey { get; }
+        [XmlElement]
+        public string PxPayUserId { get; set; }
+
+        [XmlElement]
+        public string PxPayKey { get; set;}
+
+        [XmlElement]
         public string AmountInput
         {
             get
@@ -47,26 +56,55 @@ namespace DpsPayfit
             }
         }
 
+        [XmlIgnore]
         [Range(0, 999999.99)]
         public decimal Amount { get; set; }
-        public Currency CurrencyInput { get; set; }
-        public string TxnType { get; }
-        public string UrlFail { get; }
-        public string UrlSuccess { get; }
-        
 
+        [XmlElement]
+        public Currency CurrencyInput { get; set; }
+
+        [XmlElement]
+        public string TxnType { get; set;  }
+
+        [XmlElement]
+        public string UrlFail { get; set;  }
+
+        [XmlElement]
+        public string UrlSuccess { get; set;  }
+        
+        [XmlElement]
         [EmailAddress]
         public string EmailAddress { get; set; }
+
+        [XmlElement]
         [Range(0, 1)]
         public int? EnableAddBillCard { get; set; }
+
+        [XmlElement]
         public string MerchantReference { get; set; }
+
+        [XmlElement]
         public string DpsBillingId { get; set; }
+        
+        [XmlElement]
         public string TxnData1 { get; set; }
+        
+        [XmlElement]
         public string TxnData2 { get; set; }
+        
+        [XmlElement]
         public string TxnData3 { get; set; }
+        
+        [XmlElement]
         public string TxnId { get; set; }
+        
+        [XmlElement]
         public string Opt { get; set; }
-        public string ClientType { get; }
-        public string Timeout { get;}
+        
+        [XmlElement]
+        public string ClientType { get; set;  }
+        
+        [XmlElement()]
+        public string Timeout { get; set; }
     }
 }

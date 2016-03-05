@@ -8,9 +8,9 @@ namespace DpsPayfit
     public class GenerateRequestMessageService
     {
         private readonly IDataAnnotationsValidator _validator;
-        private readonly IMessageSerializationFactory _serializer;
+        private readonly IXmlMessageSerializer _serializer;
 
-        public GenerateRequestMessageService(IDataAnnotationsValidator validator, IMessageSerializationFactory serializer)
+        public GenerateRequestMessageService(IDataAnnotationsValidator validator, IXmlMessageSerializer serializer)
         {
             if (validator == null) throw new ArgumentNullException(nameof(validator));
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
@@ -19,11 +19,11 @@ namespace DpsPayfit
         }
 
 
-        public async Task CreateGenerateRequest(GenerateRequestMessage message)
+        public void CreateGenerateRequest(GenerateRequestMessage message)
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
             EnsureMessageValid(message);
-            var xmlRequest = await _serializer.SerializeToXmlAsync(message);
+           
         }
 
 

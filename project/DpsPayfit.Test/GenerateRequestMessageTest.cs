@@ -23,15 +23,15 @@ namespace DpsPayfit.Test
                     .Where(c => c != Currency.JPY).ToArray();
                 foreach (var currency in allCurrenciesExceptJpyYen)
                 {
-                    yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5m, CurrencyInput = currency }.Build(), "5.00" };
-                    yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.544m, CurrencyInput = currency }.Build(), "5.54" };
-                    yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.5m, CurrencyInput = currency }.Build(), "5.50" };
-                    yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.545m, CurrencyInput = currency }.Build(), "5.55" };
+                    yield return new object[] { new GenerateRequestMessageFixture { Amount = 5m, CurrencyInput = currency }.Build(), "5.00" };
+                    yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.544m, CurrencyInput = currency }.Build(), "5.54" };
+                    yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.5m, CurrencyInput = currency }.Build(), "5.50" };
+                    yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.545m, CurrencyInput = currency }.Build(), "5.55" };
                 }
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5m, CurrencyInput = Currency.JPY }.Build(), "5" };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.445m, CurrencyInput = Currency.JPY }.Build(), "5" };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.5m, CurrencyInput = Currency.JPY }.Build(), "6" };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 5.545m, CurrencyInput = Currency.JPY }.Build(), "6" };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = 5m, CurrencyInput = Currency.JPY }.Build(), "5" };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.445m, CurrencyInput = Currency.JPY }.Build(), "5" };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.5m, CurrencyInput = Currency.JPY }.Build(), "6" };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = 5.545m, CurrencyInput = Currency.JPY }.Build(), "6" };
             }
         }
 
@@ -57,32 +57,32 @@ namespace DpsPayfit.Test
         {
             get
             {
-                var message = new DpsGenerateRequestMessageFixture().Build();
+                var message = new GenerateRequestMessageFixture().Build();
 
-                yield return new object[] { new DpsGenerateRequestMessageFixture { }.Build(), nameof(message.PxPayKey), true };
+                yield return new object[] { new GenerateRequestMessageFixture { }.Build(), nameof(message.PxPayKey), true };
 
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = -1 }.Build(), nameof(message.Amount), false };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { Amount = 1000000 }.Build(), nameof(message.Amount), false };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = -1 }.Build(), nameof(message.Amount), false };
+                yield return new object[] { new GenerateRequestMessageFixture { Amount = 1000000 }.Build(), nameof(message.Amount), false };
 
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EmailAddress = "test@google.co.nz" }.Build(), nameof(message.EmailAddress), true };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EmailAddress = "notAnEmail" }.Build(), nameof(message.EmailAddress), false };
+                yield return new object[] { new GenerateRequestMessageFixture { EmailAddress = "test@google.co.nz" }.Build(), nameof(message.EmailAddress), true };
+                yield return new object[] { new GenerateRequestMessageFixture { EmailAddress = "notAnEmail" }.Build(), nameof(message.EmailAddress), false };
 
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EnableAddBillCard = null}.Build(), nameof(message.EnableAddBillCard), true };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EnableAddBillCard = 0 }.Build(), nameof(message.EnableAddBillCard), true };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EnableAddBillCard = 1 }.Build(), nameof(message.EnableAddBillCard), true };
-                yield return new object[] { new DpsGenerateRequestMessageFixture { EnableAddBillCard = 8 }.Build(), nameof(message.EnableAddBillCard), false };
+                yield return new object[] { new GenerateRequestMessageFixture { EnableAddBillCard = null}.Build(), nameof(message.EnableAddBillCard), true };
+                yield return new object[] { new GenerateRequestMessageFixture { EnableAddBillCard = 0 }.Build(), nameof(message.EnableAddBillCard), true };
+                yield return new object[] { new GenerateRequestMessageFixture { EnableAddBillCard = 1 }.Build(), nameof(message.EnableAddBillCard), true };
+                yield return new object[] { new GenerateRequestMessageFixture { EnableAddBillCard = 8 }.Build(), nameof(message.EnableAddBillCard), false };
             }
         }
 
         [Fact]
         public void SetsTxnTypeAsExpected()
         {
-            var auth = new DpsGenerateRequestMessageFixture
+            var auth = new GenerateRequestMessageFixture
             {
                 TxnType = TxnType.Auth
             }.Build();
 
-            var purchase = new DpsGenerateRequestMessageFixture
+            var purchase = new GenerateRequestMessageFixture
             {
                 TxnType = TxnType.Purchase
             }.Build();
@@ -94,12 +94,12 @@ namespace DpsPayfit.Test
         [Fact]
         public void SetsClientTypeAsExpected()
         {
-            var internet = new DpsGenerateRequestMessageFixture
+            var internet = new GenerateRequestMessageFixture
             {
                 ClientType = ClientType.Internet
             }.Build();
 
-            var recurring = new DpsGenerateRequestMessageFixture
+            var recurring = new GenerateRequestMessageFixture
             {
                 ClientType = ClientType.Recurring
             }.Build();
@@ -112,12 +112,12 @@ namespace DpsPayfit.Test
         public void SetsTimeoutValueFormatAsExpected()
         {
             var currentTime = DateTimeOffset.UtcNow;
-            var withTimeout = new DpsGenerateRequestMessageFixture
+            var withTimeout = new GenerateRequestMessageFixture
             {
                 Timeout = currentTime
             }.Build();
 
-            var withoutTimeout = new DpsGenerateRequestMessageFixture
+            var withoutTimeout = new GenerateRequestMessageFixture
             {
                 Timeout = null
             }.Build();
@@ -127,9 +127,9 @@ namespace DpsPayfit.Test
         }
     }
 
-    public class DpsGenerateRequestMessageFixture
+    public class GenerateRequestMessageFixture
     {
-        public DpsGenerateRequestMessageFixture()
+        public GenerateRequestMessageFixture()
         {
             PxPayKey = "aKey";
             PxPayUserId = "anId";

@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageSerializationFactoryTest.cs" />
+    <Compile Include="XmlXmlMessageSerializerTest.cs" />
     <Compile Include="GenerateRequestMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
