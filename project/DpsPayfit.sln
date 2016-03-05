@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit", "DpsPayfit.csproj", "{FD3547CE-A89F-4C34-81B8-38FF373AC971}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit", ".\DpsPayfit\DpsPayfit.csproj", "{FD3547CE-A89F-4C34-81B8-38FF373AC971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", "..\DpsPayfit.Test\DpsPayfit.Test.csproj", "{84577378-F546-456F-AB64-D6D8BCDDAA6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", ".\DpsPayfit.Test\DpsPayfit.Test.csproj", "{84577378-F546-456F-AB64-D6D8BCDDAA6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation", "..\DpsPayfit.Validation\DpsPayfit.Validation.csproj", "{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation", ".\DpsPayfit.Validation\DpsPayfit.Validation.csproj", "{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation.Test", "..\DpsPayfit.Validation.Test\DpsPayfit.Validation.Test.csproj", "{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation.Test", ".\DpsPayfit.Validation.Test\DpsPayfit.Validation.Test.csproj", "{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
