@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Refit;
 
@@ -19,7 +20,12 @@ namespace DpsPayfit.Client
             if (generateRequestXml == null) throw new ArgumentNullException(nameof(generateRequestXml));
             var service = RestService.For<IGenerateRequest>(_hostName);
             var response = await service.GenerateRequest(generateRequestXml);
-            return response;
+            var responseBody = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception($"PaymentExpress GenerateRequest returned STATUS: {response.StatusCode} \n MessageBody:\n {responseBody}");
+            }
+            return responseBody;
         }
     }
 }

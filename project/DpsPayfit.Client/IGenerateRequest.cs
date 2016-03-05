@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Threading.Tasks;
 using Refit;
 
@@ -7,6 +8,6 @@ namespace DpsPayfit.Client
     {
         [Post("/pxaccess/pxpay.aspx")]
         [Headers("Content-Type: text/xml")]
-        Task<string> GenerateRequest([Body] string generateRequestXml);
+        Task<HttpResponseMessage> GenerateRequest([Body] string generateRequestXml);
     }
 }
