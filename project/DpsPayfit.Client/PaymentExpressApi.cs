@@ -5,7 +5,7 @@ using Refit;
 
 namespace DpsPayfit.Client
 {
-    public class PaymentExpressApi
+    internal class PaymentExpressApi : IPaymentExpressApi
     {
         private readonly string _hostName;
 

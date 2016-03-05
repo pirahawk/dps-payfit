@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGenerateRequest.cs" />
+    <Compile Include="IPaymentExpressApi.cs" />
     <Compile Include="PaymentExpressApi.cs" />
+    <Compile Include="PaymentExpressApiFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
