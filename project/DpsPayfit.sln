@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit", ".\DpsPayfit\DpsPayfit.csproj", "{FD3547CE-A89F-4C34-81B8-38FF373AC971}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit", "DpsPayfit\DpsPayfit.csproj", "{FD3547CE-A89F-4C34-81B8-38FF373AC971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", ".\DpsPayfit.Test\DpsPayfit.Test.csproj", "{84577378-F546-456F-AB64-D6D8BCDDAA6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation", "DpsPayfit.Validation\DpsPayfit.Validation.csproj", "{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation", ".\DpsPayfit.Validation\DpsPayfit.Validation.csproj", "{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation.Test", "DpsPayfit.Validation.Test\DpsPayfit.Validation.Test.csproj", "{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation.Test", ".\DpsPayfit.Validation.Test\DpsPayfit.Validation.Test.csproj", "{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", "DpsPayfit.Test\DpsPayfit.Test.csproj", "{84577378-F546-456F-AB64-D6D8BCDDAA6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{FD3547CE-A89F-4C34-81B8-38FF373AC971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD3547CE-A89F-4C34-81B8-38FF373AC971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD3547CE-A89F-4C34-81B8-38FF373AC971}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89EDCB13-C86E-4ACF-9E03-9C139992E1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB5A96A8-02AA-4E0C-AB38-0F7B46208D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
