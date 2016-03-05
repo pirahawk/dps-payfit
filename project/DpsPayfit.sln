@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Validation.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", "DpsPayfit.Test\DpsPayfit.Test.csproj", "{84577378-F546-456F-AB64-D6D8BCDDAA6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Client", "DpsPayfit.Client\DpsPayfit.Client.csproj", "{59637C33-EEBC-404C-8749-AE166085BD7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84577378-F546-456F-AB64-D6D8BCDDAA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59637C33-EEBC-404C-8749-AE166085BD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59637C33-EEBC-404C-8749-AE166085BD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59637C33-EEBC-404C-8749-AE166085BD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59637C33-EEBC-404C-8749-AE166085BD7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
