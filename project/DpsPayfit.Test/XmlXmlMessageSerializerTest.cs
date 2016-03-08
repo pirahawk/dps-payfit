@@ -32,26 +32,6 @@ namespace DpsPayfit.Test
 
             var serializer = new XmlXmlMessageSerializerFixture().Build();
             var xml = serializer.SerializeToXml(generateRequestMessage);
-            //TODO
-            //Assert.True(xml.Contains("PxPayUserId"));
-            //Assert.True(xml.Contains("PxPayKey"));
-            //Assert.True(xml.Contains("AmountInput"));
-            //Assert.True(xml.Contains("CurrencyInput"));
-            //Assert.True(xml.Contains("TxnType"));
-            //Assert.True(xml.Contains("UrlFail"));
-            //Assert.True(xml.Contains("UrlSuccess"));
-            //Assert.True(xml.Contains("EmailAddress"));
-            //Assert.True(xml.Contains("EnableAddBillCard"));
-            //Assert.True(xml.Contains("MerchantReference"));
-            //Assert.True(xml.Contains("DpsBillingId"));
-
-            //Assert.True(xml.Contains("TxnData1"));
-            //Assert.True(xml.Contains("TxnData2"));
-            //Assert.True(xml.Contains("TxnData3"));
-            //Assert.True(xml.Contains("TxnId"));
-            //Assert.True(xml.Contains("Opt"));
-            //Assert.True(xml.Contains("ClientType"));
-            //Assert.True(xml.Contains("Timeout"));
         }
     }
 

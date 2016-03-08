@@ -19,7 +19,7 @@ namespace DpsPayfit
             Currency currencyInput,
             TxnType txnType,
             decimal amount = 0,
-            ClientType clientType = DpsPayfit.ClientType.Internet,
+            ClientType clientType = global::DpsPayfit.ClientType.Internet,
             DateTimeOffset? timeout = null)
         {
             if (string.IsNullOrWhiteSpace(pxPayUserId)) throw new ArgumentNullException(nameof(pxPayUserId));
