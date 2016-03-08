@@ -9,17 +9,14 @@ namespace DpsPayfit
     public class DpsPayfit
     {
         private readonly IDataAnnotationsValidator _validator;
-        private readonly IXmlMessageSerializer _serializer;
         private readonly IPaymentExpressApi _api;
 
-        public DpsPayfit(IDataAnnotationsValidator validator, IXmlMessageSerializer serializer, IPaymentExpressApi api)
+        public DpsPayfit(IDataAnnotationsValidator validator, IPaymentExpressApi api)
         {
             if (validator == null) throw new ArgumentNullException(nameof(validator));
-            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
             if (api == null) throw new ArgumentNullException(nameof(api));
 
             _validator = validator;
-            _serializer = serializer;
             _api = api;
         }
 
@@ -28,8 +25,7 @@ namespace DpsPayfit
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
             EnsureMessageValid(message);
-            var messageXml = _serializer.SerializeToXml(message);
-            var response = await _api.PostGenerateRequestAsync(messageXml);
+            var response = await _api.PostGenerateRequestAsync(message);
         }
 
 

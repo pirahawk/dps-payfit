@@ -1,4 +1,4 @@
-﻿namespace DpsPayfit
+﻿namespace DpsPayfit.Client
 {
     public enum Currency
     {

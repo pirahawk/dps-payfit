@@ -2,9 +2,9 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace DpsPayfit.Test
+namespace DpsPayfit.Client.Test
 {
-    public class XmlXmlMessageSerializerTest
+    public class XmlMessageSerializerTest
     {
         [Fact]
         public void SerializesToXmlAsExpected()
@@ -14,8 +14,7 @@ namespace DpsPayfit.Test
                 FirstName = "Foo",
                 LastName = "Bar"
             };
-            var serializer = new XmlXmlMessageSerializerFixture().Build();
-            var xml = serializer.SerializeToXml(toSerialize);
+            var xml = XmlMessageSerializer.SerializeToXml(toSerialize);
             Assert.True(xml.Contains("FirstName"));
             Assert.True(xml.Contains("LastName"));
             Assert.False(xml.Contains("SomethingElse"));
@@ -30,18 +29,11 @@ namespace DpsPayfit.Test
 
             }.Build();
 
-            var serializer = new XmlXmlMessageSerializerFixture().Build();
-            var xml = serializer.SerializeToXml(generateRequestMessage);
+            var xml = XmlMessageSerializer.SerializeToXml(generateRequestMessage);
         }
     }
 
-    public class XmlXmlMessageSerializerFixture
-    {
-        public XmlXmlMessageSerializer Build()
-        {
-            return new XmlXmlMessageSerializer();
-        }
-    }
+    
 
     [XmlRoot(ElementName = "MyTestType", Namespace = "")]
     public class MyTestType

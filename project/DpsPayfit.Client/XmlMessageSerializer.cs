@@ -1,19 +1,12 @@
 using System;
-using System.Threading.Tasks;
-using DpsPayfit.Validation;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace DpsPayfit
+namespace DpsPayfit.Client
 {
-    public interface IXmlMessageSerializer
+    public static class XmlMessageSerializer
     {
-        string SerializeToXml<TMessage>(TMessage requestMessage);
-    }
-
-    public class XmlXmlMessageSerializer : IXmlMessageSerializer
-    {
-        public string SerializeToXml<TMessage>(TMessage requestMessage)
+        public static string SerializeToXml<TMessage>(TMessage requestMessage)
         {
             if (requestMessage == null) throw new ArgumentNullException(nameof(requestMessage));
             using (var stream = new MemoryStream())

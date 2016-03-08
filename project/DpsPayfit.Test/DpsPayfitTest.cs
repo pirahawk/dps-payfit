@@ -53,13 +53,11 @@ namespace DpsPayfit.Test
 
     public class DpsPayfitFixture
     {
-        public IXmlMessageSerializer Serializer { get; set; }
         public IDataAnnotationsValidator Validator { get; set; }
         public IPaymentExpressApi Api { get; private set; }
 
         public DpsPayfitFixture()
         {
-            Serializer = new Mock<IXmlMessageSerializer>().Object;
             var mock = new Mock<IDataAnnotationsValidator>();
             mock.Setup(m => m.Validate(It.IsAny<object>())).Returns(Enumerable.Empty<PropertyValidationResult>());
             Validator = mock.Object;
@@ -68,7 +66,7 @@ namespace DpsPayfit.Test
 
         public DpsPayfit Build()
         {
-            return new DpsPayfit(Validator, Serializer, Api);
+            return new DpsPayfit(Validator, Api);
         }
     }
 }

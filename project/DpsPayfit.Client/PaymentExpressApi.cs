@@ -15,10 +15,11 @@ namespace DpsPayfit.Client
             _hostName = hostName;
         }
 
-        public async Task<string> PostGenerateRequestAsync(string generateRequestXml)
+        public async Task<string> PostGenerateRequestAsync(GenerateRequestMessage message)
         {
-            if (generateRequestXml == null) throw new ArgumentNullException(nameof(generateRequestXml));
+            if (message == null) throw new ArgumentNullException(nameof(message));
             var service = RestService.For<IGenerateRequest>(_hostName);
+            var generateRequestXml = XmlMessageSerializer.SerializeToXml(message);
             var response = await service.GenerateRequest(generateRequestXml);
             var responseBody = await response.Content.ReadAsStringAsync();
             if (response.StatusCode != HttpStatusCode.OK)

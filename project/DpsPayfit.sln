@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Test", "DpsPayfit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Client", "DpsPayfit.Client\DpsPayfit.Client.csproj", "{59637C33-EEBC-404C-8749-AE166085BD7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DpsPayfit.Client.Test", "DpsPayfit.Client.Test\DpsPayfit.Client.Test.csproj", "{840A8EB2-CA17-4D89-B53B-21CCE93E45DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{59637C33-EEBC-404C-8749-AE166085BD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59637C33-EEBC-404C-8749-AE166085BD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59637C33-EEBC-404C-8749-AE166085BD7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{840A8EB2-CA17-4D89-B53B-21CCE93E45DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840A8EB2-CA17-4D89-B53B-21CCE93E45DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{840A8EB2-CA17-4D89-B53B-21CCE93E45DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840A8EB2-CA17-4D89-B53B-21CCE93E45DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

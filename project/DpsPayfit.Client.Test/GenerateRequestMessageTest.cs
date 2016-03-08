@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DpsPayfit.Validation.Test;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DpsPayfit.Validation.Test;
 using Xunit;
 
-namespace DpsPayfit.Test
+namespace DpsPayfit.Client.Test
 {
     public class GenerateRequestMessageTest
     {

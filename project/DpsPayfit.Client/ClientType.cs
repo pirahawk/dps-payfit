@@ -1,4 +1,4 @@
-namespace DpsPayfit
+namespace DpsPayfit.Client
 {
     /// <summary>
     /// Allows the Client type to be passed through at transaction time

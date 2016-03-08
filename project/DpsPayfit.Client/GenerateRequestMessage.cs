@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-namespace DpsPayfit
+namespace DpsPayfit.Client
 {
     /// <summary>
     /// Represents a Dps Generate-Request Message
@@ -19,7 +19,7 @@ namespace DpsPayfit
             Currency currencyInput,
             TxnType txnType,
             decimal amount = 0,
-            ClientType clientType = global::DpsPayfit.ClientType.Internet,
+            ClientType clientType = DpsPayfit.Client.ClientType.Internet,
             DateTimeOffset? timeout = null)
         {
             if (string.IsNullOrWhiteSpace(pxPayUserId)) throw new ArgumentNullException(nameof(pxPayUserId));

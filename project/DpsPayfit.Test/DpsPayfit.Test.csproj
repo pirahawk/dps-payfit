@@ -66,8 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DpsPayfitTest.cs" />
-    <Compile Include="XmlXmlMessageSerializerTest.cs" />
-    <Compile Include="GenerateRequestMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
