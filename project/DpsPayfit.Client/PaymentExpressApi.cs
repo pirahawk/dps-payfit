@@ -5,28 +5,27 @@ using Refit;
 
 namespace DpsPayfit.Client
 {
-    internal class PaymentExpressApi : IPaymentExpressApi
+    public class PaymentExpressApi : IPaymentExpressApi
     {
-        private readonly string _hostName;
-
-        public PaymentExpressApi(string hostName)
+        private IGenerateRequest _generateRequestService;
+        public PaymentExpressApi(IGenerateRequest generateRequestService)
         {
-            if (hostName == null) throw new ArgumentNullException(nameof(hostName));
-            _hostName = hostName;
+            if (generateRequestService == null) throw new ArgumentNullException(nameof(generateRequestService));
+            _generateRequestService = generateRequestService;
         }
 
         public async Task<string> PostGenerateRequestAsync(GenerateRequestMessage message)
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
-            var service = RestService.For<IGenerateRequest>(_hostName);
+            
             var generateRequestXml = XmlMessageSerializer.SerializeToXml(message);
-            var response = await service.GenerateRequest(generateRequestXml);
-            var responseBody = await response.Content.ReadAsStringAsync();
+            var response = await _generateRequestService.GenerateRequest(generateRequestXml);
+            var responseBody = response.Content.ReadAsStringAsync();
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new Exception($"PaymentExpress GenerateRequest returned STATUS: {response.StatusCode} \n MessageBody:\n {responseBody}");
             }
-            return responseBody;
+            return await responseBody;
         }
     }
 }

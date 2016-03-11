@@ -1,3 +1,4 @@
+using Refit;
 using System;
 
 namespace DpsPayfit.Client
@@ -7,7 +8,8 @@ namespace DpsPayfit.Client
         public IPaymentExpressApi CreateApi(string hostName)
         {
             if (hostName == null) throw new ArgumentNullException(nameof(hostName));
-            return new PaymentExpressApi(hostName);
+            var service = RestService.For<IGenerateRequest>(hostName);
+            return new PaymentExpressApi(service);
         }
     }
 }
