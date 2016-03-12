@@ -14,18 +14,18 @@ namespace DpsPayfit.Client
             _generateRequestService = generateRequestService;
         }
 
-        public async Task<string> PostGenerateRequestAsync(GenerateRequestMessage message)
+        public async Task<RequestMessage> PostGenerateRequestAsync(GenerateRequestMessage message)
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
-            
-            var generateRequestXml = XmlMessageSerializer.SerializeToXml(message);
+            var generateRequestXml = XmlMessageSerializer.Serialize(message);
             var response = await _generateRequestService.GenerateRequest(generateRequestXml);
             var responseBody = response.Content.ReadAsStringAsync();
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new Exception($"PaymentExpress GenerateRequest returned STATUS: {response.StatusCode} \n MessageBody:\n {responseBody}");
             }
-            return await responseBody;
+            var responseBodyXml = await responseBody;
+            return XmlMessageSerializer.Deserialize<RequestMessage>(responseBodyXml);
         }
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="PaymentExpressApi.cs" />
     <Compile Include="PaymentExpressApiFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestMessage.cs" />
     <Compile Include="TxnType.cs" />
     <Compile Include="XmlMessageSerializer.cs" />
   </ItemGroup>

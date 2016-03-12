@@ -10,16 +10,16 @@ using Xunit;
 
 namespace DpsPayfit.Client.Test
 {
-
     public class PaymentExpressApiTest
     {
+        const string MockResponse = @"<Request valid=""1""><URI>https://test.com/123</URI></Request>";
         [Theory, MemberData("ExpectedResponseCodes")]
         public async Task ConductsGenertaeRequestMessageAsExpected(HttpStatusCode statusCode)
         {
             var message = new GenerateRequestMessageFixture().Build();
             var response = new HttpResponseMessage(statusCode)
             {
-                Content = new StringContent("TestResponseContent")
+                Content = new StringContent(MockResponse)
             };
             var service = new Mock<IGenerateRequest>();
             service.Setup(m => m.GenerateRequest(It.IsAny<string>())).ReturnsAsync(response).Verifiable();
@@ -27,10 +27,10 @@ namespace DpsPayfit.Client.Test
             {
                 GenerateRequestService = service.Object
             }.Build();
-
-            if (statusCode == System.Net.HttpStatusCode.OK)
+            if (statusCode == HttpStatusCode.OK)
             {
                 var result = await api.PostGenerateRequestAsync(message);
+                Assert.True(result.IsValid);
             }
             else
             {
@@ -43,8 +43,8 @@ namespace DpsPayfit.Client.Test
         {
             get
             {
-                yield return new object[] { System.Net.HttpStatusCode.OK };
-                yield return new object[] { System.Net.HttpStatusCode.NotFound };
+                yield return new object[] { HttpStatusCode.OK };
+                yield return new object[] { HttpStatusCode.NotFound };
             }
         }
     }

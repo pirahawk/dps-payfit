@@ -4,6 +4,6 @@ namespace DpsPayfit.Client
 {
     public interface IPaymentExpressApi
     {
-        Task<string> PostGenerateRequestAsync(GenerateRequestMessage message);
+        Task<RequestMessage> PostGenerateRequestAsync(GenerateRequestMessage message);
     }
 }

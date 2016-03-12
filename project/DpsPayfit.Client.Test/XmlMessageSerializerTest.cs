@@ -14,7 +14,7 @@ namespace DpsPayfit.Client.Test
                 FirstName = "Foo",
                 LastName = "Bar"
             };
-            var xml = XmlMessageSerializer.SerializeToXml(toSerialize);
+            var xml = XmlMessageSerializer.Serialize(toSerialize);
             Assert.True(xml.Contains("FirstName"));
             Assert.True(xml.Contains("LastName"));
             Assert.False(xml.Contains("SomethingElse"));
@@ -29,11 +29,21 @@ namespace DpsPayfit.Client.Test
 
             }.Build();
 
-            var xml = XmlMessageSerializer.SerializeToXml(generateRequestMessage);
+            var xml = XmlMessageSerializer.Serialize(generateRequestMessage);
+        }
+
+        [Fact]
+        public void CanDeserialzieXml() {
+
+            const string message = @"<Request valid=""1"">
+                    <URI>https://test.com/123</URI>
+                </Request>";
+
+            var requestMessage = XmlMessageSerializer.Deserialize<RequestMessage>(message);
+            Assert.Equal("https://test.com/123", requestMessage.Uri);
+            Assert.True(requestMessage.IsValid);
         }
     }
-
-    
 
     [XmlRoot(ElementName = "MyTestType", Namespace = "")]
     public class MyTestType
