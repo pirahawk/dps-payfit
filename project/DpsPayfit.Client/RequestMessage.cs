@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace DpsPayfit.Client
 {
@@ -13,10 +8,24 @@ namespace DpsPayfit.Client
         [XmlAttribute(AttributeName = "valid")]
         public int ValidFlag { get; set; }
 
-        [XmlIgnore]
-        public bool IsValid { get { return ValidFlag == 1; } }
-
         [XmlElement(ElementName = "URI")]
         public string Uri { get; set; }
+
+        [XmlElement(ElementName = "Reco")]
+        public string ResponseCode { get; set; }
+
+        [XmlElement(ElementName = "ResponseText")]
+        public string ResponseText { get; set; }
+
+        [XmlIgnore]
+        public bool IsValid
+        {
+            get
+            {
+                return ValidFlag == 1
+                && string.IsNullOrWhiteSpace(ResponseCode)
+                && string.IsNullOrWhiteSpace(ResponseText);
+            }
+        }
     }
 }
