@@ -24,12 +24,15 @@ namespace DpsPayfit.Client.Test
         [Fact]
         public void CanSerializeGenerateRequestMessage()
         {
-            var generateRequestMessage = new GenerateRequestMessageFixture
-            {
-
-            }.Build();
-
+            var generateRequestMessage = new GenerateRequestMessageFixture().Build();
             var xml = XmlMessageSerializer.Serialize(generateRequestMessage);
+        }
+
+        [Fact]
+        public void CanSerializeProcessResponseMessage()
+        {
+            var responseMessage = new ProcessResponseMessageFixture().Build();
+            var xml = XmlMessageSerializer.Serialize(responseMessage);
         }
 
         [Fact]

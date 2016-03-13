@@ -12,29 +12,8 @@ namespace DpsPayfit.Client
     public class GenerateRequestMessage : IDpsMessage
     {
         public GenerateRequestMessage(){   }
-        public GenerateRequestMessage(string pxPayUserId,
-            string pxPayKey,
-            string urlSuccess,
-            string urlFail,
-            Currency currencyInput,
-            TxnType txnType,
-            decimal amount = 0,
-            ClientType clientType = DpsPayfit.Client.ClientType.Internet,
-            DateTimeOffset? timeout = null)
+        public GenerateRequestMessage(DateTimeOffset? timeout = null)
         {
-            if (string.IsNullOrWhiteSpace(pxPayUserId)) throw new ArgumentNullException(nameof(pxPayUserId));
-            if (string.IsNullOrWhiteSpace(pxPayKey)) throw new ArgumentNullException(nameof(pxPayKey));
-            if (string.IsNullOrWhiteSpace(urlSuccess)) throw new ArgumentNullException(nameof(urlSuccess));
-            if (string.IsNullOrWhiteSpace(urlFail)) throw new ArgumentNullException(nameof(urlFail));
-
-            PxPayUserId = pxPayUserId;
-            PxPayKey = pxPayKey;
-            UrlSuccess = urlSuccess;
-            UrlFail = urlFail;
-            Amount = amount;
-            CurrencyInput = currencyInput;
-            TxnType = txnType.ToString();
-            ClientType = clientType.ToString();
             if (timeout.HasValue)
             {
                 Timeout = $"{timeout:yyMMddHHmm}";
@@ -69,7 +48,7 @@ namespace DpsPayfit.Client
 
         [XmlElement]
         [Required]
-        public string TxnType { get; set;  }
+        public TxnType TxnType { get; set;  }
 
         [XmlElement]
         [Required]
@@ -109,7 +88,7 @@ namespace DpsPayfit.Client
         public string Opt { get; set; }
         
         [XmlElement]
-        public string ClientType { get; set;  }
+        public ClientType ClientType { get; set;  }
         
         [XmlElement()]
         public string Timeout { get; set; }

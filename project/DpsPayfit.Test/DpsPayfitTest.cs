@@ -15,7 +15,7 @@ namespace DpsPayfit.Test
         [Fact]
         public void ValidatesGenerateRequest()
         {
-            var message = new GenerateRequestMessage();
+            var message = new GenerateRequestMessageFixture().Build();
             var validator = new Mock<IDataAnnotationsValidator>();
             validator.Setup(m => m.Validate(message)).Returns(Enumerable.Empty<PropertyValidationResult>()).Verifiable();
             var payfit = new DpsPayfitFixture
@@ -31,7 +31,7 @@ namespace DpsPayfit.Test
         public void ThrowsExceptionWhenMessageIsInvalid()
         {
             const string error = "Sample error";
-            var message = new GenerateRequestMessage();
+            var message = new GenerateRequestMessageFixture().Build();
             var invalidMemberName = nameof(message.EmailAddress);
             var validator = new Mock<IDataAnnotationsValidator>();
             validator.Setup(m => m.Validate(message)).Returns(new[] { new PropertyValidationResult {

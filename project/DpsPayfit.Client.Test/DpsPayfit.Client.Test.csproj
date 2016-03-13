@@ -68,6 +68,8 @@
     <Compile Include="GenerateRequestMessageFixture.cs" />
     <Compile Include="GenerateRequestMessageTest.cs" />
     <Compile Include="PaymentExpressApiTest.cs" />
+    <Compile Include="ProcessResponseMessageFixture.cs" />
+    <Compile Include="ProcessResponseMessageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestMessageFixture.cs" />
     <Compile Include="XmlMessageSerializerTest.cs" />

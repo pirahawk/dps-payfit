@@ -75,40 +75,6 @@ namespace DpsPayfit.Client.Test
         }
 
         [Fact]
-        public void SetsTxnTypeAsExpected()
-        {
-            var auth = new GenerateRequestMessageFixture
-            {
-                TxnType = TxnType.Auth
-            }.Build();
-
-            var purchase = new GenerateRequestMessageFixture
-            {
-                TxnType = TxnType.Purchase
-            }.Build();
-
-            Assert.Equal(TxnType.Auth.ToString(), auth.TxnType);
-            Assert.Equal(TxnType.Purchase.ToString(), purchase.TxnType);
-        }
-
-        [Fact]
-        public void SetsClientTypeAsExpected()
-        {
-            var internet = new GenerateRequestMessageFixture
-            {
-                ClientType = ClientType.Internet
-            }.Build();
-
-            var recurring = new GenerateRequestMessageFixture
-            {
-                ClientType = ClientType.Recurring
-            }.Build();
-
-            Assert.Equal(ClientType.Internet.ToString(), internet.ClientType);
-            Assert.Equal(ClientType.Recurring.ToString(), recurring.ClientType);
-        }
-
-        [Fact]
         public void SetsTimeoutValueFormatAsExpected()
         {
             var currentTime = DateTimeOffset.UtcNow;

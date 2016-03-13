@@ -21,18 +21,16 @@ namespace DpsPayfit.Client.Test
         }
         public GenerateRequestMessage Build()
         {
-            return new GenerateRequestMessage(
-                PxPayUserId,
-                PxPayKey,
-                UrlSuccess,
-                UrlFail,
-                CurrencyInput,
-                TxnType,
-                Amount,
-                ClientType,
-                Timeout = Timeout
-                )
+            return new GenerateRequestMessage(Timeout = Timeout )
             {
+                PxPayUserId = PxPayUserId,
+                PxPayKey = PxPayKey,
+                UrlSuccess = UrlSuccess,
+                UrlFail = UrlFail,
+                CurrencyInput = CurrencyInput,
+                TxnType = TxnType,
+                Amount = Amount,
+                ClientType = ClientType,
                 EmailAddress = EmailAddress,
                 EnableAddBillCard = EnableAddBillCard,
                 MerchantReference = MerchantReference,
