@@ -42,12 +42,15 @@ namespace DpsPayfit.Client
         }
 
         [XmlElement]
+        [Required]
         public string PxPayUserId { get; set; }
 
         [XmlElement]
+        [Required]
         public string PxPayKey { get; set;}
 
         [XmlElement]
+        [Required]
         public string AmountInput
         {
             get
@@ -61,15 +64,19 @@ namespace DpsPayfit.Client
         public decimal Amount { get; set; }
 
         [XmlElement]
+        [Required]
         public Currency CurrencyInput { get; set; }
 
         [XmlElement]
+        [Required]
         public string TxnType { get; set;  }
 
         [XmlElement]
+        [Required]
         public string UrlFail { get; set;  }
 
         [XmlElement]
+        [Required]
         public string UrlSuccess { get; set;  }
         
         [XmlElement]
