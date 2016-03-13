@@ -65,9 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerateRequestMessageFixture.cs" />
     <Compile Include="GenerateRequestMessageTest.cs" />
     <Compile Include="PaymentExpressApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestMessageFixture.cs" />
     <Compile Include="XmlMessageSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>

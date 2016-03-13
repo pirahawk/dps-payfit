@@ -1,9 +1,11 @@
 ﻿using DpsPayfit.Client;
+using DpsPayfit.Client.Test;
 using DpsPayfit.Validation;
 using Moq;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace DpsPayfit.Test
@@ -22,12 +24,11 @@ namespace DpsPayfit.Test
             }.Build();
 
             payfit.EnsureMessageValid(message);
-
             validator.VerifyAll();
         }
 
         [Fact]
-        public void ThrowsExceptionWhenMessgaeIsInvalid()
+        public void ThrowsExceptionWhenMessageIsInvalid()
         {
             const string error = "Sample error";
             var message = new GenerateRequestMessage();
@@ -49,19 +50,45 @@ namespace DpsPayfit.Test
 
             validator.VerifyAll();
         }
+
+        [Fact]
+        public async Task CallsApiToGenerateRequest() {
+            var message = new GenerateRequestMessageFixture().Build();
+            var response = new RequestMessageFixture().Build();
+            var validator = new Mock<IDataAnnotationsValidator>();
+            validator.Setup(m => m.Validate(message))
+                .Returns(Enumerable.Empty<PropertyValidationResult>())
+                .Verifiable();
+            var api = new Mock<IPaymentExpressApi>();
+            api.Setup(m => m.PostGenerateRequestAsync(message))
+                .ReturnsAsync(response)
+                .Verifiable();
+
+            var payfit = new DpsPayfitFixture
+            {
+                Api = api.Object,
+                Validator = validator.Object
+            }.Build();
+
+            var result = await payfit.CreateGenerateRequest(message);
+
+            Assert.Equal(response, result);
+            validator.VerifyAll();
+            api.VerifyAll();
+        }
     }
 
     public class DpsPayfitFixture
     {
         public IDataAnnotationsValidator Validator { get; set; }
-        public IPaymentExpressApi Api { get; private set; }
+        public IPaymentExpressApi Api { get; set; }
 
         public DpsPayfitFixture()
         {
+            Api = new Mock<IPaymentExpressApi>().Object;
             var mock = new Mock<IDataAnnotationsValidator>();
             mock.Setup(m => m.Validate(It.IsAny<object>())).Returns(Enumerable.Empty<PropertyValidationResult>());
             Validator = mock.Object;
-            Api = new Mock<IPaymentExpressApi>().Object;
         }
 
         public DpsPayfit Build()

@@ -69,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DpsPayfit.Client.Test\DpsPayfit.Client.Test.csproj">
+      <Project>{840a8eb2-ca17-4d89-b53b-21cce93e45df}</Project>
+      <Name>DpsPayfit.Client.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DpsPayfit.Client\DpsPayfit.Client.csproj">
       <Project>{59637c33-eebc-404c-8749-ae166085bd7e}</Project>
       <Name>DpsPayfit.Client</Name>

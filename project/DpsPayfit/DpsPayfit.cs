@@ -20,12 +20,12 @@ namespace DpsPayfit
             _api = api;
         }
 
-
-        public async Task CreateGenerateRequest(GenerateRequestMessage message)
+        public async Task<RequestMessage> CreateGenerateRequest(GenerateRequestMessage message)
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
             EnsureMessageValid(message);
             var response = await _api.PostGenerateRequestAsync(message);
+            return response;
         }
 
 
