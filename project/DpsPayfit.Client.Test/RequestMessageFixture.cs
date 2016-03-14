@@ -20,7 +20,7 @@
 
         public string Uri { get; set; }
         public int ValidFlag { get; set; }
-        public string ResponseCode { get; private set; }
-        public string ResponseText { get; private set; }
+        public string ResponseCode { get; set; }
+        public string ResponseText { get; set; }
     }
 }
